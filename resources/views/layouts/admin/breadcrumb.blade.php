@@ -2,12 +2,13 @@
     <div class="d-flex justify-content-between">
         <div class="clearfix">
             <div class="pd-t-5 pd-b-5">
-                <h1 class="pd-0 mg-0 tx-20 tx-dark">Sales Monitoring</h1>
+                <h1 class="pd-0 mg-0 tx-20 tx-dark">{{ $breadcrumb[0] }}</h1>
             </div>
             <div class="breadcrumb pd-0 mg-0">
-                <a class="breadcrumb-item" href="index.html"><i class="icon ion-ios-home-outline"></i> Home</a>
-                <a class="breadcrumb-item" href="">Dashboard</a>
-                <span class="breadcrumb-item active">Sales Monitoring</span>
+                <a class="breadcrumb-item" href="index.html"><i class="icon ion-ios-home-outline"></i>
+                    Home</a>
+                <a class="breadcrumb-item" href="">{{ $breadcrumb[1] }}</a>
+                <span class="breadcrumb-item active">{{ $breadcrumb[2] }}</span>
             </div>
         </div>
         {{-- <div class="d-flex align-items-center">

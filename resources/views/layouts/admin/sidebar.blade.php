@@ -12,35 +12,14 @@
       <div class="page-sidebar-inner">
           <div class="page-sidebar-menu">
               <ul class="accordion-menu">
-                  <li class="mg-l-20-force mg-t-25-force menu-navigation">Navigation</li>
+                  <li class="mg-l-20-force mg-t-25-force menu-navigation">Admin</li>
                   <li class="open active">
                       <a href=""><i data-feather="home"></i>
-                          <span>Dashboard</span><i class="accordion-icon fa fa-angle-left"></i></a>
+                          <span>Roles & Permissions</span><i class="accordion-icon fa fa-angle-left"></i></a>
                       <ul class="sub-menu" style="display: block;">
                           <!-- Active Page -->
-                          <li class="active"><a href="index.html">Sales</a></li>
-                          <li><a href="index2.html">Analytics</a></li>
-                          <li><a href="index3.html">Cryptocurrency</a></li>
-                          <li><a href="index4.html">Helpdesk</a></li>
-                          <li><a href="index5.html">Project</a></li>
-                      </ul>
-                  </li>
-                  <li>
-                      <a href=""><i data-feather="mail"></i>
-                          <span>Mailbox</span><i class="accordion-icon fa fa-angle-left"></i></a>
-                      <ul class="sub-menu">
-                          <li><a href="mailbox.html">Inbox</a></li>
-                          <li><a href="mailbox-message.html">View Mail</a></li>
-                          <li><a href="mailbox-compose.html">Compose Mail</a></li>
-                      </ul>
-                  </li>
-                  <li>
-                      <a href=""><i data-feather="feather"></i>
-                          <span>Apps View</span><i class="accordion-icon fa fa-angle-left"></i></a>
-                      <ul class="sub-menu">
-                          <li><a href="app-chatroom.html">Chat Room</a></li>
-                          <li><a href="app-calendar.html">Calendar</a></li>
-                          <li><a href="app-file-manager.html">File Manager</a></li>
+                          <li class="active"><a href="{{ route('roles.index') }}">Roles</a></li>
+                          <li><a href="{{ route('permissions.index') }}">Permission</a></li>
                       </ul>
                   </li>
               </ul>

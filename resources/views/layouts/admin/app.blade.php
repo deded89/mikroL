@@ -20,14 +20,15 @@
 
 <body>
     <div class="page-container">
-        @include('layouts.sidebar')
+        @include('layouts.admin.sidebar')
         <div class="page-content">
-            @include('layouts.header')
+            @include('layouts.admin.header')
             <div class="page-inner">
-                @include('layouts.breadcrumb')
+                @include('layouts.admin.breadcrumb')
+                @include('layouts.admin.alerts')
                 @yield('content')
             </div>
-            @include('layouts.footer')
+            @include('layouts.admin.footer')
         </div>
     </div>
     <a href="" data-click="scroll-top" class="btn-scroll-top fade"><i class="fa fa-arrow-up"></i></a>

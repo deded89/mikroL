@@ -337,10 +337,12 @@ a.tx-info:focus {
 }
 
 .page-content {
-    min-height: 60px;
+    min-height: 100vh;
     vertical-align: bottom;
     width: calc(100% - 250px);
     float: right;
+    display: flex;
+    flex-direction: column;
 }
 
 _::-webkit-full-page-media,
@@ -354,6 +356,7 @@ _:future,
     padding: 0 30px 0px;
     width: 100%;
     overflow: hidden;
+    flex-grow: 1;
 }
 
 .page-inner.full-page {

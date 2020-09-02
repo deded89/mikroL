@@ -19,4 +19,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::group(['prefix' => 'admin'], function () {
+    Route::resource('roles', 'RoleController')->except(['create', 'update', 'edit']);
+    Route::resource('permissions', 'PermissionController')->except(['create', 'update', 'edit']);
+});
+
 Route::get('/home', 'HomeController@index')->name('home');
