@@ -1,5 +1,5 @@
 </div>
-@extends('layouts.web')
+@extends('layouts.user.web')
 @section('content')
 
 <style>

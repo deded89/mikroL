@@ -13,6 +13,7 @@
     <!-- Page Title -->
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Main CSS -->
+    @stack('css')
     <link type="text/css" rel="stylesheet" href="{{ asset('') }}css/style.css" />
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('') }}images/favicon.ico" type="image/x-icon">
@@ -22,10 +23,10 @@
     <div class="page-container">
         @include('layouts.admin.sidebar')
         <div class="page-content">
+            @include('layouts.admin.alerts')
             @include('layouts.admin.header')
             <div class="page-inner">
                 @include('layouts.admin.breadcrumb')
-                @include('layouts.admin.alerts')
                 @yield('content')
             </div>
             @include('layouts.admin.footer')
@@ -37,7 +38,6 @@
     <!--================================-->
     <script src="{{ asset('') }}plugins/jquery/jquery.min.js"></script>
     <script src="{{ asset('') }}plugins/jquery-ui/jquery-ui.js"></script>
-    <script src="{{ asset('') }}plugins/moment/moment.min.js"></script>
     <script src="{{ asset('') }}plugins/popper/popper.js"></script>
     <script src="{{ asset('') }}plugins/feather/feather.min.js"></script>
     <script src="{{ asset('') }}plugins/bootstrap/js/bootstrap.min.js"></script>
@@ -46,10 +46,15 @@
     <script src="{{ asset('') }}plugins/pace/pace.min.js"></script>
     <script src="{{ asset('') }}plugins/slimscroll/jquery.slimscroll.min.js"></script>
     <script src="{{ asset('') }}plugins/highlight/highlight.min.js"></script>
+    <!-- footable Script -->
+    <script src="{{ asset('') }}plugins/footable/footable.all.min.js"></script>
     <!-- Required Script -->
+    @stack('js')
     <script src="{{ asset('') }}js/app.js"></script>
     <script src="{{ asset('') }}js/avesta.js"></script>
     <script src="{{ asset('') }}js/avesta-customizer.js"></script>
+
+    @stack('script')
 </body>
 
 </html>

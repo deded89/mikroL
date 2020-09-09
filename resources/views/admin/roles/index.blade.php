@@ -1,15 +1,28 @@
 @extends('layouts.admin.app')
+@section('breadcrumb')
+<div class="pd-t-5 pd-b-5">
+    <h1 class="pd-0 mg-0 tx-20 tx-dark">Role Management</h1>
+</div>
+<div class="breadcrumb pd-0 mg-0">
+    <a class="breadcrumb-item" href="{{ route('admin.dashboard') }}">
+        <i class="icon ion-ios-home-outline"></i>
+        <span class=" badge badge-info p-1">Admin Dashboard</span></a>
+    {{-- <a class="breadcrumb-item" href="">Roles & Permissions</a> --}}
+    <span class="breadcrumb-item">Roles & Permissions</span>
+    <span class="breadcrumb-item active">Roles List</span>
+</div>
+@endsection
 @section('content')
 <div>
     <div class="col-md-12 col-lg-12 d-flex flex-column">
         @if($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
+        <div class="alert alert-danger">
+            <ul>
+                @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
         @endif
         <button type="button" class="btn btn-outline-primary rounded-pill mb-2" data-toggle="modal"
             data-target="#createModal">New Role</button>
@@ -31,20 +44,22 @@
                     </thead>
                     <tbody>
                         @foreach($roles as $key => $role)
-                            <tr>
-                                <th scope="row">{{ $roles->firstItem() + $key }}</th>
-                                <td>{{ $role->name }}</td>
-                                <td class="text-right table-actions">
-                                    <form action="{{ route('roles.destroy',$role->id) }}"
-                                        method="POST">
-                                        @method('DELETE')
-                                        @csrf
-                                        <button class="btn btn-sm btn-custom-white" type="submit">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
+                        <tr>
+                            <th scope="row">{{ $roles->firstItem() + $key }}</th>
+                            <td>{{ $role->name }}</td>
+                            <td class="d-flex justify-content-end">
+                                <a href="{{ route('admin.roles.rolePermissions',$role->id) }}"
+                                    class="btn btn-sm btn-custom-white mr-1" role="button"><i
+                                        class="fa fa-unlock-alt"></i></a>
+                                <form action="{{ route('admin.roles.destroy',$role->id) }}" method="POST">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button class="btn btn-sm btn-custom-white" type="submit">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
                         @endforeach
                     </tbody>
                 </table>
@@ -65,7 +80,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('roles.store') }}" method="POST">
+            <form action="{{ route('admin.roles.store') }}" method="POST">
                 <div class="modal-body">
                     @csrf
                     <input type="text" name="name" class="form-control" autofocus>

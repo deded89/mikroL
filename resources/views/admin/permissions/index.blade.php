@@ -35,7 +35,8 @@
                                 <th scope="row">{{ $permissions->firstItem() + $key }}</th>
                                 <td>{{ $perm->name }}</td>
                                 <td class="text-right table-actions">
-                                    <form action="{{ route('roles.destroy',$perm->id) }}"
+                                    <form
+                                        action="{{ route('admin.permissions.destroy',$perm->id) }}"
                                         method="POST">
                                         @method('DELETE')
                                         @csrf
@@ -66,7 +67,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('permissions.store') }}" method="POST">
+            <form action="{{ route('admin.permissions.store') }}" method="POST">
                 <div class="modal-body">
                     @csrf
                     <input type="text" name="name" class="form-control" autofocus>

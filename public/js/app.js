@@ -241,3 +241,6 @@ $(function () {
 $('.modal').on('shown.bs.modal', function () {
     $(this).find('[autofocus]').focus();
 });
+
+// Hide alert on success
+$(".alert-success").fadeTo(3000, 0.2).slideUp(500);

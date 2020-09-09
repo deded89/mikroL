@@ -13,15 +13,37 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// AUTH ROUTES DEFAULT
+Auth::routes();
+
+Route::group(['middlware' => 'auth'], function () {
+    route::get('change-password', 'Auth\ChangePasswordController@edit')->name('password.edit');
+    route::post('change-password', 'Auth\ChangePasswordController@change')->name('password.change');
+});
+
+
+// ADMIN ROUTE
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'role:admin']], function () {
+    Route::get('/', function () {
+        return view('admin.dashboard');
+    })->name('dashboard');
+
+
+    Route::get('roles/rolePermissions/{role}', 'Admin\RoleController@rolePermissions')->name('roles.rolePermissions');
+    Route::post('roles/assignPermissions/{role}', 'Admin\RoleController@assignPermissions')->name('roles.assignPermissions');
+    Route::resource('roles', 'Admin\RoleController')->except(['create', 'update', 'edit']);
+    Route::resource('permissions', 'Admin\PermissionController')->except(['create', 'update', 'edit']);
+    Route::resource('users', 'Admin\UserController')->except(['edit', 'show', 'update']);
+    Route::get('users/editRoles/{user}', 'Admin\UserController@editRoles')->name('users.editRoles');
+    Route::post('users/updateRoles/{user}', 'Admin\UserController@updateRoles')->name('users.updateRoles');
+    Route::get('users/permissions/{user}', 'Admin\UserController@userPermissions')->name('users.userPermissions');
+    Route::post('users/assignPermissions/{user}', 'Admin\UserController@assignPermissions')->name('users.assignPermissions');
+});
+
+// USER ROUTE
+Route::get('/home', 'HomeController@index')->name('home');
+
+// GUEST ROUTE
 Route::get('/', function () {
     return view('welcome');
 });
-
-Auth::routes();
-
-Route::group(['prefix' => 'admin'], function () {
-    Route::resource('roles', 'RoleController')->except(['create', 'update', 'edit']);
-    Route::resource('permissions', 'PermissionController')->except(['create', 'update', 'edit']);
-});
-
-Route::get('/home', 'HomeController@index')->name('home');

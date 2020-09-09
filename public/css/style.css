@@ -228,7 +228,7 @@ a.tx-info:focus {
     color: #2bad0d !important;
 }
 
-.bg-soft-danger {
+b .bg-soft-danger {
     background-color: rgba(244, 67, 54, 0.15) !important;
     color: #ff2b2b !important;
 }
@@ -3421,7 +3421,7 @@ ul.error-list {
 
 .form-control:disabled,
 .form-control[readonly] {
-    background-color: transparent;
+    background-color: #d5d5d59c;
 }
 
 .flatpickr-calendar {
@@ -4850,6 +4850,10 @@ pre {
     letter-spacing: 0.3px;
 }
 
+.breadcrumb a.breadcrumb-item {
+    color: #fff;
+}
+
 .breadcrumb-item.active {
     color: #bccad6;
 }
@@ -6034,6 +6038,17 @@ Header Search CSS
 .font-customize a.active-font {
     border: 1px solid #007bff;
     color: #007bff;
+}
+
+/* .list-container {
+    height: 200px;
+    overflow-y: auto;
+} */
+
+.alert {
+    position: absolute;
+    z-index: 9999;
+    width: 100%;
 }
 
 /*# sourceMappingURL=style.css.map */

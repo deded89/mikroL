@@ -19,6 +19,7 @@
         <!--================================-->
         <!-- Header Right Start -->
         <!--================================-->
+
         <div class="header-right pull-right">
             <ul class="list-inline justify-content-end">
                 <!--================================-->
@@ -69,8 +70,8 @@
                 <!--================================-->
                 <li class="list-inline-item dropdown">
                     <a href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="{{ asset('') }}images/users-face/1.png"
-                            class="img-fluid wd-30 ht-30 rounded-circle" alt="">
+                        <img src="{{ asset('') }}images/users-face/1.png" class="img-fluid wd-30 ht-30 rounded-circle"
+                            alt="">
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-profile">
                         <div class="user-profile-area">
@@ -84,26 +85,20 @@
                                     <span>email@example.com</span>
                                 </div>
                             </div>
-                            {{-- <a href="" class="dropdown-item"><i data-feather="user" class="wd-16 mr-2"></i> My
-                                profile</a>
-                            <a href="" class="dropdown-item"><i data-feather="message-square" class="wd-16 mr-2"></i>
-                                Messages</a>
-                            <a href="" class="dropdown-item"><i data-feather="settings" class="wd-16 mr-2"></i>
-                                Settings</a>
-                            <a href="" class="dropdown-item"><i data-feather="activity" class="wd-16 mr-2"></i> My
-                                Activity</a>
-                            <a href="" class="dropdown-item"><i data-feather="download" class="wd-16 mr-2"></i> My
-                                Download</a>
-                            <a href="" class="dropdown-item"><i data-feather="life-buoy" class="wd-16 mr-2"></i>
-                                Support</a> --}}
-                            <a href="aut-logign-register.html" class="dropdown-item"><i data-feather="power"
-                                    class="wd-16 mr-2"></i> Sign-out</a>
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="dropdown-item">
+                                    <i data-feather="power" class="wd-16 mr-2"></i>Sign-out
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </li>
                 <!-- Profile Dropdown End -->
             </ul>
         </div>
+
+
         <!--/ Header Right End -->
     </nav>
 </div>
