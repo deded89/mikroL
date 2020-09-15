@@ -2,6 +2,7 @@
 $(document).ready(function () {
     "use strict";
 
+
     // Options
     var submenu_animation_speed = 100,
         submenu_opacity_animation = true, // set to "false" to remove opacity animation
@@ -128,6 +129,7 @@ $(document).ready(function () {
         };
 
         fixed_sidebar();
+
         collapsed_sidebar();
         small_screen_sidebar();
     };

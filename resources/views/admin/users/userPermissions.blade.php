@@ -37,7 +37,7 @@
                         </div>
 
                         <h6>Give Permissions to User :</h6>
-                        <div class="row pl-3">
+                        <div id="allItemsBoxContainer" class="row pl-3">
                             <div class="custom-control custom-checkbox mb-2">
                                 <input type="checkbox" class="custom-control-input" name="select-all" id="select-all">
                                 <label class="custom-control-label font-weight-bold" for="select-all">Select
@@ -45,8 +45,8 @@
                             </div>
                             <div id="list-container">
                                 @foreach($permissions as $key=>$permission)
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input item" name="permissions[]"
+                                <div class="custom-control custom-checkbox ml-2">
+                                    <input type="checkbox" class="custom-control-input itemBoxs" name="permissions[]"
                                         id="permission{{ $key }}" value="{{ $permission->name }}"
                                         @if($user->hasPermissionTo($permission->id)) checked @endif >
                                     <label class="custom-control-label"
@@ -73,40 +73,5 @@
 @endsection
 
 @push('script')
-<script>
-    // Slimscroll
-    $(function () {
-        $('#list-container').slimScroll({
-            height: '250px',
-            color: '#000000',
-            width: '100%',
-        });
-    });
-
-    // Listen for click on toggle checkbox
-    $('#select-all').click(function (event) {
-        if (this.checked) {
-            $(':checkbox').prop('checked', true);
-        } else {
-            $(':checkbox').prop('checked', false);
-        }
-    });
-    // centang select all jika semua cekbox dipilih
-    $('.item').click(function (event) {
-        cekCheckboxes();
-    });
-
-    $(document).ready(function () {
-        cekCheckboxes();
-    });
-
-    function cekCheckboxes() {
-        if ($('.item').length === $('.item:checked').length) {
-            $('#select-all').prop('checked', true);
-        } else {
-            $('#select-all').prop('checked', false);
-        }
-    };
-
-</script>
+<script src="{{ asset('') }}js/custom.js"></script>
 @endpush

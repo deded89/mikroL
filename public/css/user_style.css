@@ -1,0 +1,8 @@
+@import url("../plugins/font-awesome/css/font-awesome.min.css");
+
+
+.alert {
+    position: absolute;
+    z-index: 9999;
+    width: 100%;
+}

@@ -14,21 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 // AUTH ROUTES DEFAULT
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::group(['middlware' => 'auth'], function () {
+Route::group(['middleware' => ['auth', 'verified']], function () {
     route::get('change-password', 'Auth\ChangePasswordController@edit')->name('password.edit');
     route::post('change-password', 'Auth\ChangePasswordController@change')->name('password.change');
 });
 
 
 // ADMIN ROUTE
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'role:admin']], function () {
-    Route::get('/', function () {
-        return view('admin.dashboard');
-    })->name('dashboard');
-
-
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'verified', 'role:admin']], function () {
+    Route::get('/', 'Admin\DashboardController@index')->name('dashboard');
     Route::get('roles/rolePermissions/{role}', 'Admin\RoleController@rolePermissions')->name('roles.rolePermissions');
     Route::post('roles/assignPermissions/{role}', 'Admin\RoleController@assignPermissions')->name('roles.assignPermissions');
     Route::resource('roles', 'Admin\RoleController')->except(['create', 'update', 'edit']);
@@ -41,9 +37,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'r
 });
 
 // USER ROUTE
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'User\HomeController@index')->name('home');
 
 // GUEST ROUTE
 Route::get('/', function () {
-    return view('welcome');
+    return view('user.welcome');
 });

@@ -10,5 +10,48 @@
 </div>
 @endsection
 @section('content')
-<h1>Admin Dashboard</h1>
+<div class="row clearfix">
+    <div class="col-6 col-md-6 col-lg-3">
+        <div class="card mg-b-30">
+            <div class="card-body">
+                <h5 class="tx-uppercase tx-spacing-1 tx-semibold tx-10 mb-2"> jumlah Roles</h5>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2 class="tx-20 tx-sm-18 tx-md-24 mg-b-0 tx-rubik tx-dark tx-normal">{{ $rolesCount }}</h2>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-md-6 col-lg-3">
+        <div class="card mg-b-30">
+            <div class="card-body">
+                <h5 class="tx-uppercase tx-spacing-1 tx-semibold tx-10 mb-2"> jumlah permissions</h5>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2 class="tx-20 tx-sm-18 tx-md-24 mg-b-0 tx-rubik tx-dark tx-normal">{{ $permissionsCount }}</h2>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-md-6 col-lg-3">
+        <div class="card mg-b-30">
+            <div class="card-body">
+                <h5 class="tx-uppercase tx-spacing-1 tx-semibold tx-10 mb-2"> jumlah user</h5>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2 class="tx-20 tx-sm-18 tx-md-24 mg-b-0 tx-rubik tx-dark tx-normal">{{ $usersCount }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-md-6 col-lg-3">
+        <div class="card mg-b-30">
+            <div class="card-body">
+                <h5 class="tx-uppercase tx-spacing-1 tx-semibold tx-10 mb-2"> new user this week</h5>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2 class="tx-20 tx-sm-18 tx-md-24 mg-b-0 tx-rubik tx-dark tx-normal">{{ $thisWeekUserCount }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

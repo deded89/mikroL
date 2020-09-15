@@ -81,8 +81,8 @@
                                         class="img-fluid wd-35 ht-35 rounded-circle" alt="">
                                 </div>
                                 <div class="profile-text">
-                                    <h6>Ruhul Hasan</h6>
-                                    <span>email@example.com</span>
+                                    <h6>{{ Auth::user()->username }}</h6>
+                                    <span>{{ Auth::user()->email }}</span>
                                 </div>
                             </div>
                             <form action="{{ route('logout') }}" method="POST">
