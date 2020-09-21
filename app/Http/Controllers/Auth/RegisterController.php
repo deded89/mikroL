@@ -8,6 +8,9 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Store;
+use App\Cabang;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -29,7 +32,16 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
+    protected function redirectTo()
+    {
+        //You would need to modify this according to your needs, this is just an example.
+        if (Auth::user()->hasRole('admin')) {
+            return route('admin.dashboard');
+        } else {
+            return route('dashboard');
+        }
+    }
 
     /**
      * Create a new controller instance.
@@ -64,10 +76,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user =  User::create([
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        $user->assignRole('owner');
+        $store = Store::Create(['nama_toko' => $user->username . ' Laundry', 'user_id' => $user->id]);
+        Cabang::create(['nama_cabang' => 'Utama', 'is_open' => true, 'store_id' => $store->id]);
+
+        return $user;
     }
 }

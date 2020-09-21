@@ -1,8 +1,123 @@
 @import url("../plugins/font-awesome/css/font-awesome.min.css");
 
+a.btn.btn-white {
+    color: black;
+}
+
+a.btn.btn-transp {
+    color: black;
+}
+
+#app {
+    height: 100vh;
+}
 
 .alert {
     position: absolute;
     z-index: 9999;
     width: 100%;
+}
+
+.alert.validation {
+    position: static;
+}
+
+.user-info {
+    margin: 0;
+    font-size: 0.9em;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.user-info p {
+    margin-bottom: 0.3rem;
+}
+
+.card-body.my-card {
+    padding: 0.5rem;
+}
+
+.my-card .card {
+    margin: 10px 5px;
+}
+
+.my-card .card .card-header {
+    background-color: white;
+    border-bottom: none;
+}
+
+.my-card .card .card-body {
+    font-size: 2em;
+    padding: 0;
+}
+
+.my-card .card .card-footer {
+    padding: 0.2rem 1rem;
+}
+
+.menu-bottom {
+    height: 75px;
+    position: fixed;
+    bottom: 5px;
+    left: 10px;
+    right: 10px;
+    border-radius: 5px;
+    display: flex;
+    border: 2px solid #007bff;
+    background-color: white;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 9999;
+}
+
+.menu-bottom a {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid white;
+    border-radius: 5px;
+    font-size: 1.8rem;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+.modal-dialog {
+    top: 20%;
+}
+
+div#simpleTable_wrapper div.dataTables_paginate ul.pagination {
+    justify-content: flex-start;
+}
+
+.btn.btn-white {
+    background-color: white;
+}
+
+.btn.btn-transp {
+    background-color: transparent;
+}
+
+.card-footer {
+    background-color: white;
+    border-top: 0;
+}
+
+.cl-success {
+    color: #28a745;
+}
+
+.cl-warning {
+    color: #ffc107;
+}
+
+.cl-primary {
+    color: #007bff;
+}
+
+.row-disabled {
+    opacity: 0.5;
 }

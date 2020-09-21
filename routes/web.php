@@ -23,7 +23,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
 
 // ADMIN ROUTE
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'verified', 'role:admin']], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'role:admin']], function () {
     Route::get('/', 'Admin\DashboardController@index')->name('dashboard');
     Route::get('roles/rolePermissions/{role}', 'Admin\RoleController@rolePermissions')->name('roles.rolePermissions');
     Route::post('roles/assignPermissions/{role}', 'Admin\RoleController@assignPermissions')->name('roles.assignPermissions');
@@ -37,9 +37,19 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'v
 });
 
 // USER ROUTE
-Route::get('/home', 'User\HomeController@index')->name('home');
+Route::get('dashboard', 'User\DashboardController@index')->name('dashboard');
+Route::get('master', 'User\MasterDataController@index')->name('master');
+Route::get('account', 'User\AccountController@index')->name('account');
+
+Route::post('stores', 'User\StoreController@store')->name('stores.store');
+
+Route::get('cabangs/{cabang}/ubah', 'User\CabangController@ubahStatus')->name('cabangs.ubahStatus');
+Route::resource('cabangs', 'User\CabangController')->except('show', 'destroy');
 
 // GUEST ROUTE
 Route::get('/', function () {
-    return view('user.welcome');
+    return view('user.landing');
 });
+
+//TES ROUTE
+Route::resource('tes', 'TesController');

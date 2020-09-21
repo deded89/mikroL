@@ -49,4 +49,10 @@ class User extends Authenticatable implements MustVerifyEmail
         $users = $query->where('created_at', '>=', $date);
         return $users;
     }
+
+    // RELATIONSHIP
+    public function store()
+    {
+        return $this->hasOne(Store::class);
+    }
 }

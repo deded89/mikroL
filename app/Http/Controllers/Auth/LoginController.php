@@ -34,9 +34,9 @@ class LoginController extends Controller
         $user = Auth::user();
         $request->session()->flash('success', 'Logged-in Succesfully');
         if ($user->hasRole('admin')) {
-            return redirect('/admin');
+            return redirect()->route('admin.dashboard');
         } else {
-            return redirect('/home');
+            return redirect()->route('dashboard');
         }
     }
 

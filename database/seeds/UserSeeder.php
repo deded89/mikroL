@@ -22,5 +22,14 @@ class UserSeeder extends Seeder
 
         $user = User::where('username', 'admin')->first();
         $user->assignRole('admin');
+
+        $user = new User();
+        $user->username = "tesowner";
+        $user->email = "owner@tes.com";
+        $user->password = Hash::make("rahasiaku");
+        $user->save();
+
+        $user = User::where('username', 'tesowner')->first();
+        $user->assignRole('owner');
     }
 }

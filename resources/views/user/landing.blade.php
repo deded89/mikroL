@@ -21,12 +21,13 @@
                     kini bisnis laundry rumahan anda bisa lebih profesional.
                 </p>
                 <a href="#" class="btn btn-default">Pelajari lebih lanjut</a>
+                <a href="{{ route('login') }}" class="btn btn-default">Login</a>
+                <a href="{{ route('register') }}" class="btn btn-default">Daftar</a>
             </div>
 
             <div class="col-lg-6 mt-5 mt-lg-0 pd-md-30">
                 <div class="ui-presentation-right ui-window float-left rounded">
-                    <div class="window-content"><img src="{{ asset('') }}images/gallery/dashboard.gif"
-                            alt></div>
+                    <div class="window-content"><img src="{{ asset('') }}images/gallery/dashboard.gif" alt></div>
                 </div>
             </div>
 

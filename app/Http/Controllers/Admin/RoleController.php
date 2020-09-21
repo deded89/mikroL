@@ -22,7 +22,6 @@ class RoleController extends Controller
         ], [
             'unique' => 'Role tersebut sudah ada',
         ]);
-
         Role::create([
             'name' => $request->name,
         ]);
