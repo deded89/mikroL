@@ -1,5 +1,29 @@
 @import url("../plugins/font-awesome/css/font-awesome.min.css");
 
+.pace {
+    -webkit-pointer-events: none;
+    pointer-events: none;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.pace-inactive {
+    display: none;
+}
+
+.pace .pace-progress {
+    background: rgb(48, 189, 13);
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    right: 100%;
+    width: 100%;
+    height: 7px;
+}
+
+
 a.btn.btn-white {
     color: black;
 }
@@ -119,5 +143,9 @@ div#simpleTable_wrapper div.dataTables_paginate ul.pagination {
 }
 
 .row-disabled {
+    opacity: 0.5;
+}
+
+.row-disabled+tr {
     opacity: 0.5;
 }

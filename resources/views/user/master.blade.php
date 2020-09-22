@@ -35,7 +35,8 @@
                             <div class="card">
                                 <div class="card-header">Layanan</div>
                                 <div class="card-body">3</div>
-                                <div class="card-footer">Detail <i class="fa fa-arrow-circle-right"></i></div>
+                                <a href="{{ route('layanans.index') }}" class="card-footer">Detail <i
+                                        class="fa fa-arrow-circle-right"></i></a>
                             </div>
 
                             <div class="card">

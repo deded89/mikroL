@@ -84,7 +84,13 @@ class RegisterController extends Controller
 
         $user->assignRole('owner');
         $store = Store::Create(['nama_toko' => $user->username . ' Laundry', 'user_id' => $user->id]);
-        Cabang::create(['nama_cabang' => 'Utama', 'is_open' => true, 'store_id' => $store->id]);
+        Cabang::create([
+            'nama_cabang' => 'Utama',
+            'is_open' => true,
+            'alamat' => '-',
+            'telepon' => '-',
+            'store_id' => $store->id
+        ]);
 
         return $user;
     }

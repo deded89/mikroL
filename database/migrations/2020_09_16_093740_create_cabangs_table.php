@@ -17,12 +17,12 @@ class CreateCabangsTable extends Migration
             $table->id();
             $table->string('nama_cabang', 100);
             $table->boolean('is_open');
+            $table->text('alamat');
+            $table->string('telepon', 25);
             $table->bigInteger('store_id');
-            $table->bigInteger('user_id');
             $table->timestamps();
 
             $table->foreign('store_id')->references('id')->on('stores');
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

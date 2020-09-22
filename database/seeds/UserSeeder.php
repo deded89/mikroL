@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use App\Cabang;
+use App\Store;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -31,5 +33,18 @@ class UserSeeder extends Seeder
 
         $user = User::where('username', 'tesowner')->first();
         $user->assignRole('owner');
+
+        $store = new Store();
+        $store->nama_toko = $user->username . ' Laundry';
+        $store->user_id = $user->id;
+        $store->save();
+
+        $cabang = new Cabang();
+        $cabang->nama_cabang = 'Utama';
+        $cabang->is_open = true;
+        $cabang->alamat = '-';
+        $cabang->telepon = '-';
+        $cabang->store_id = $store->id;
+        $cabang->save();
     }
 }

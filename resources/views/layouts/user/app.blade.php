@@ -37,6 +37,7 @@
         <script src="{{ asset('') }}plugins/jquery/jquery.min.js"></script>
         <script src="{{ asset('') }}plugins/popper/popper.js"></script>
         <script src="{{ asset('') }}plugins/bootstrap/js/bootstrap.min.js"></script>
+        <script src="{{ asset('') }}plugins/pace/pace.min.js"></script>
         <script src="{{ asset('') }}js/user.js"></script>
         @stack('datatable-js')
         @stack('js')

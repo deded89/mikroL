@@ -46,6 +46,8 @@ Route::post('stores', 'User\StoreController@store')->name('stores.store');
 Route::get('cabangs/{cabang}/ubah', 'User\CabangController@ubahStatus')->name('cabangs.ubahStatus');
 Route::resource('cabangs', 'User\CabangController')->except('show', 'destroy');
 
+Route::resource('layanans', 'User\LayananController');
+
 // GUEST ROUTE
 Route::get('/', function () {
     return view('user.landing');

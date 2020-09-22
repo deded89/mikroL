@@ -9,6 +9,8 @@ class Store extends Model
 {
     protected $fillable = ['nama_toko', 'user_id'];
 
+
+    // REALTIONSHIP
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -19,6 +21,13 @@ class Store extends Model
         return $this->hasMany(Cabang::class);
     }
 
+    public function layanans()
+    {
+        return $this->hasMany(layanan::class);
+    }
+
+
+    // SCOPE
     public function scopeUserStore($query)
     {
         $user_id = Auth::User()->id;

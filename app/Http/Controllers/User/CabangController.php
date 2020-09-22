@@ -41,14 +41,14 @@ class CabangController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'nama_cabang' => 'required',
-        ]);
+        $this->runRules($request);
 
         $store = Store::UserStore()->first();
         Cabang::Create([
             'nama_cabang' => $request->nama_cabang,
             'is_open' => true,
+            'alamat' => $request->alamat,
+            'telepon' => $request->telepon,
             'store_id' => $store->id,
         ]);
 
@@ -68,11 +68,14 @@ class CabangController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'nama_cabang' => 'required',
-        ]);
+        $this->runRules($request);
 
-        Cabang::where('id', $id)->update(['nama_cabang' => $request->nama_cabang]);
+        Cabang::where('id', $id)
+            ->update([
+                'nama_cabang' => $request->nama_cabang,
+                'alamat' => $request->alamat,
+                'telepon' => $request->telepon,
+            ]);
 
         return response()->json(['success' => 'Data berhasil diupdate.']);
     }
@@ -92,5 +95,14 @@ class CabangController extends Controller
         } else {
             return response()->json(['sukses' => 'Cabang Ditutup']);
         }
+    }
+
+    protected function runRules($request)
+    {
+        return $request->validate([
+            'nama_cabang' => 'required',
+            'alamat' => 'required|min:5',
+            'telepon' => 'required|min:5',
+        ]);
     }
 }

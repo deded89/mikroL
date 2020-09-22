@@ -14,10 +14,12 @@
         <div class="col-md-8">
             <table id="simpleTable" class="table nowrap">
                 <thead>
-                    <th>No</th>
-                    <th>Nama</th>
-                    <th>Status</th>
-                    <th class="text-center">Aksi</th>
+                    <th class="all">No</th>
+                    <th class="all">Nama</th>
+                    <th class="none">Status</th>
+                    <th class="none">Alamat</th>
+                    <th class="none">Telepon</th>
+                    <th class="text-center all">Aksi</th>
                 </thead>
             </table>
         </div>
@@ -40,9 +42,18 @@
 
                         <input type="hidden" name="cabang_id" id="cabang_id">
                         <div class="form-group">
-                            <label for="name">Nama Cabang</label>
-                            <input id="nama_cabang" name="nama_cabang" type="text" class="form-control" autofocus>
+                            <input id="nama_cabang" name="nama_cabang" type="text" class="form-control"
+                                placeholder="Nama Cabang" autofocus>
                             <small id="error_nama_cabang" class="text-danger"></small>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="alamat" name="alamat" rows="3" cols="50" class="form-control"
+                                placeholder="Alamat"></textarea>
+                            <small id="error_alamat" class="text-danger"></small>
+                        </div>
+                        <div class="form-group">
+                            <input id="telepon" name="telepon" type="text" class="form-control" placeholder="Telepon">
+                            <small id="error_telepon" class="text-danger"></small>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -81,8 +92,21 @@
             processing: true,
             serverSide: true,
             responsive: true,
-            dom: '<"d-flex justify-content-between"pf>t', //default is 'lftipr'
+            stateSave: true,
             pagingType: 'simple',
+            language: {
+                paginate: {
+                    previous: '‹',
+                    next: '›'
+                },
+                aria: {
+                    paginate: {
+                        previous: 'Previous',
+                        next: 'Next'
+                    }
+                }
+            },
+            dom: '<"d-flex justify-content-between"pf>t', //default is 'lftipr'
             ajax: "{{ route('cabangs.index') }}",
             columns: [{
                     data: 'DT_RowIndex',
@@ -97,6 +121,14 @@
                     name: 'status',
                 },
                 {
+                    data: 'alamat',
+                    name: 'alamat',
+                },
+                {
+                    data: 'telepon',
+                    name: 'telepon',
+                },
+                {
                     data: 'action',
                     name: 'action',
                     orderable: false,
@@ -107,6 +139,8 @@
         $('#formModal').on('hidden.bs.modal', function (e) {
             $('#formInput').trigger("reset");
             $('#error_nama_cabang').text('');
+            $('#error_alamat').text('');
+            $('#error_telepon').text('');
             $('#cabang_id').val("");
         });
 
@@ -121,6 +155,8 @@
                 $('#formModal').modal('show');
                 $('#cabang_id').val(data.id);
                 $('#nama_cabang').val(data.nama_cabang);
+                $('#alamat').val(data.alamat);
+                $('#telepon').val(data.telepon);
                 $('#btnSave').html('Simpan Edit');
             })
         });
@@ -164,6 +200,8 @@
                     422: function (data) {
                         let errors = data.responseJSON.errors;
                         $('#error_nama_cabang').text(errors.nama_cabang);
+                        $('#error_alamat').text(errors.alamat);
+                        $('#error_telepon').text(errors.telepon);
                         btnSave.text('Simpan');
                     }
                 },
