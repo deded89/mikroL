@@ -1,27 +1,21 @@
 <div class="container">
     <div class="row justify-content-center mb-3">
         <div class="col-md-8 d-flex justify-content-end">
-            <button id="btnCreate" class="btn btn-sm btn-success mr-1">Buka Cabang Baru</button>
+            <button id="btnCreate" class="btn btn-sm btn-success mr-1">Tambah Pelanggan Baru</button>
             <a href="#master" class="btn btn-sm btn-danger">Kembali</a>
         </div>
     </div>
     <div class="row justify-content-center mb-3">
         <div class="col-md-8">
-            <table id="cabangTable" class="table nowrap">
+            <table id="pelangganTable" class="table nowrap">
                 <thead>
                     <th class="all">No</th>
                     <th class="all">Nama</th>
-                    <th class="all">Status</th>
                     <th class="none">Alamat</th>
                     <th class="none">Telepon</th>
                     <th class="text-center none">Aksi</th>
                 </thead>
             </table>
-        </div>
-    </div>
-    <div class="row justify-content-center mb-3">
-        <div class="col-md-8">
-            Limit Cabang Anda : 4 / 5
         </div>
     </div>
 
@@ -31,24 +25,28 @@
     <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="createModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form id="formInput" action="" method="POST">
-                    @csrf
+                <form id="formInput" action="" method="POST" enctype="multipart/form-data">
                     <div class="modal-body">
-
-                        <input type="hidden" name="cabang_id" id="cabang_id">
+                        <input type="hidden" name="pelanggan_id" id="pelanggan_id">
                         <div class="form-group">
-                            <input id="nama_cabang" name="nama_cabang" type="text" class="form-control"
-                                placeholder="Nama Cabang" autofocus>
-                            <small id="error_nama_cabang" class="text-danger"></small>
+                            <input id="nama_pelanggan" name="nama_pelanggan" type="text" class="form-control"
+                                placeholder="Nama" autofocus>
+                            <small id="error_nama_pelanggan" class="text-danger"></small>
                         </div>
                         <div class="form-group">
-                            <textarea id="alamat" name="alamat" rows="3" cols="50" class="form-control"
+                            <textarea name="alamat" id="alamat" cols="30" rows="3" class="form-control"
                                 placeholder="Alamat"></textarea>
                             <small id="error_alamat" class="text-danger"></small>
                         </div>
                         <div class="form-group">
-                            <input id="telepon" name="telepon" type="text" class="form-control" placeholder="Telepon">
+                            <input id="telepon" name="telepon" type="numeric" class="form-control"
+                                placeholder="No Telepon">
                             <small id="error_telepon" class="text-danger"></small>
+                        </div>
+                        <div class="form-group">
+                            <input type="file" name="foto" id="foto" class="form-control" />
+                            <span class="text-muted"> foto format : jpg, png, gif</span>
+                            <small id="error_foto" class="text-danger"></small>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -56,6 +54,20 @@
                         <button id="btnSave" type="submit" class="btn btn-primary">btnSave</button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="modal-foto" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body d-flex justify-content-center">
+                    <img id="foto" src="" class="img-fluid" alt="Foto Pelanggan">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>

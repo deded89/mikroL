@@ -143,9 +143,41 @@ div#simpleTable_wrapper div.dataTables_paginate ul.pagination {
 }
 
 .row-disabled {
-    opacity: 0.5;
+    color: rgb(200, 200, 200);
 }
 
-.row-disabled+tr {
-    opacity: 0.5;
+.row-disabled+.child {
+    color: rgb(200, 200, 200);
+}
+
+.row-disabled>td>a.toggleStatus>i.fa {
+    opacity: 1;
+}
+
+.foto-profil {
+    margin: 10px auto;
+    width: 100px;
+}
+
+img.card-img-top {
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+div#mainContainer {
+    margin-bottom: 100px;
+}
+
+
+
+.paginate_button.page-item>.page-link {
+    background-color: rgb(0, 123, 255);
+    color: white;
+    font-size: bold;
+}
+
+.paginate_button.page-item.disabled>.page-link {
+    background-color: transparent;
+    color: black;
+    font-size: bold;
 }

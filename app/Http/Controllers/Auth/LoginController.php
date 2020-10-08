@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Store;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -27,16 +28,13 @@ class LoginController extends Controller
      *
      * @var string
      */
-    // protected $redirectTo = RouteServiceProvider::HOME;
-
-    protected function authenticated(Request $request)
+    public function redirectTo()
     {
         $user = Auth::user();
-        $request->session()->flash('success', 'Logged-in Succesfully');
         if ($user->hasRole('admin')) {
-            return redirect()->route('admin.dashboard');
+            return route('admin.dashboard');
         } else {
-            return redirect()->route('dashboard');
+            return route('dashboard');
         }
     }
 
@@ -53,5 +51,11 @@ class LoginController extends Controller
     public function username()
     {
         return 'username';
+    }
+
+    protected function authenticated(Request $request, $user)
+    {
+        $store = Store::where('user_id',  $user->id)->first();
+        $request->session()->put('store_id', $store->id);
     }
 }

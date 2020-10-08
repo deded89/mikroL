@@ -1,7 +1,7 @@
 <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-primary">
     <div class="container">
         <span class="navbar-brand">
-            @yield('title',config('app.name'))
+            @yield('title','Mikro Laundry')
         </span>
         {{-- <a class="btn btn-outline-warning" href="{{ route('logout') }}" onclick="event.preventDefault();
         document.getElementById('logout-form').submit();">

@@ -19,6 +19,6 @@ class StoreController extends Controller
             ['user_id' => $user_id],
             ['nama_toko' => $request->nama_toko, $user_id => $user_id]
         );
-        return redirect('account')->with(['success' => 'Data Berhasil Disimpan']);
+        return response()->json(['sukses' => 'Nama Usaha Diupdate']);
     }
 }

@@ -36,17 +36,45 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'r
     Route::post('users/assignPermissions/{user}', 'Admin\UserController@assignPermissions')->name('users.assignPermissions');
 });
 
-// USER ROUTE
-Route::get('dashboard', 'User\DashboardController@index')->name('dashboard');
-Route::get('master', 'User\MasterDataController@index')->name('master');
-Route::get('account', 'User\AccountController@index')->name('account');
 
-Route::post('stores', 'User\StoreController@store')->name('stores.store');
 
-Route::get('cabangs/{cabang}/ubah', 'User\CabangController@ubahStatus')->name('cabangs.ubahStatus');
-Route::resource('cabangs', 'User\CabangController')->except('show', 'destroy');
+Route::group(['middleware' => ['auth']], function () {
+    // USER ROUTE
+    Route::get('dashboard', 'User\DashboardController@index')->name('dashboard')->middleware('auth');
 
-Route::resource('layanans', 'User\LayananController');
+    Route::get('home', 'User\HomeController@index')->name('home');
+    Route::get('home/data', 'User\HomeController@getData')->name('home.getData');
+
+
+    Route::get('master', 'User\MasterDataController@index')->name('master');
+    Route::get('master/data', 'User\MasterDataController@getData')->name('master.getData');
+
+
+    Route::get('account', 'User\AccountController@index')->name('account');
+    Route::get('account/data', 'User\AccountController@getData')->name('account.getData');
+
+    Route::get('edit-profile', 'User\ProfileController@edit');
+    Route::post('save-profile', 'User\ProfileController@store');
+
+    Route::get('menu', function () {
+        return view('layouts.user.bottom_menu');
+    });
+    // ================================================
+
+    // ================================================
+    Route::patch('stores', 'User\StoreController@store')->name('stores.store');
+
+    Route::get('cabangs/{cabang}/ubah', 'User\CabangController@ubahStatus')->name('cabangs.ubahStatus');
+
+    Route::get('cabangs/data', 'User\CabangController@getTableData')->name('cabangs.table');
+    Route::resource('cabangs', 'User\CabangController')->except('show', 'destroy');
+
+    Route::get('layanans/data', 'User\LayananController@getTableData')->name('layanans.table');
+    Route::resource('layanans', 'User\LayananController')->except('show', 'update');
+
+    Route::get('pelanggans/data', 'User\PelangganController@getTableData')->name('pelanggans.table');
+    Route::resource('pelanggans', 'User\PelangganController')->except('show', 'update');
+});
 
 // GUEST ROUTE
 Route::get('/', function () {
@@ -54,4 +82,7 @@ Route::get('/', function () {
 });
 
 //TES ROUTE
-Route::resource('tes', 'TesController');
+Route::get('tes/kirimpesan', 'TesController@kirimWa');
+Route::get('tes/cekstatus/{id}', 'TesController@getMessageById');
+Route::post('webhook', 'TesController@handle');
+Route::resource('tes', 'TesController')->except('show');

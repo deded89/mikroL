@@ -5,23 +5,19 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Store;
+use App\Profile;
 use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
 {
     public function index()
     {
-        $store = $this->getDataToko();
-        if (!$store) {
-            $store = new Store();
-        }
-        return view('user.account', compact('store'));
+        return view('user.account');
     }
 
-    private function getDataToko()
+    public function getData()
     {
-        $id = Auth::User()->id;
-        $store = Store::where('user_id', $id)->first();
-        return $store;
+        $user = Auth::User()->load('store', 'profile');
+        return response()->json($user);
     }
 }

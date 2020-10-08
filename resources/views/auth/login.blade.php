@@ -70,6 +70,16 @@
                                 @endif
                             </div>
                         </div>
+
+
+                        <div class="form-group row mb-0 mt-2">
+                            <div class="col-md-8 offset-md-4">
+                                Belum Punya Akun ?
+                                <a href="{{ route('register') }}">
+                                    Daftar Disini
+                                </a>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

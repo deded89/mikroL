@@ -4,14 +4,29 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Layanan;
-use App\Store;
 use Illuminate\Http\Request;
-use DataTables;
+use Yajra\DataTables\DataTables;
 
 class LayananController extends Controller
 {
-    public function index(Request $request)
+    protected $store_id;
+
+    public function __construct()
     {
+        $this->middleware(function ($request, $next) {
+            $this->store_id = session('store_id');
+            return $next($request);
+        });
+    }
+
+    public function index()
+    {
+        return view('user.layanan.index');
+    }
+
+    public function getTableData(Request $request)
+    {
+
         if ($request->ajax()) {
 
             $data = Layanan::latest()->get();
@@ -26,20 +41,19 @@ class LayananController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        return view('user.layanan.index');
     }
 
     public function store(Request $request)
     {
         $this->runRules($request);
-        $store = Store::UserStore()->first();
+
         Layanan::updateOrCreate(
             ['id' => $request->layanan_id],
             [
                 'nama_layanan' => $request->nama_layanan,
                 'satuan' => $request->satuan,
                 'harga' => $request->harga,
-                'store_id' => $store->id,
+                'store_id' => $this->store_id,
             ]
         );
 

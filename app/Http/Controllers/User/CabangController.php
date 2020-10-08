@@ -5,30 +5,43 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Cabang;
-use App\Store;
-use DataTables;
+use Yajra\DataTables\DataTables;
 
 class CabangController extends Controller
 {
-    public function index(Request $request)
+    protected $store_id;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->store_id = session('store_id');
+            return $next($request);
+        });
+    }
+
+    public function index()
+    {
+        return view('user.cabang.index');
+    }
+
+    public function getTableData(Request $request)
     {
         if ($request->ajax()) {
-            $store = Store::UserStore()->first();
-            $data = Cabang::where('store_id', $store->id)->latest()->get();
+            $data = Cabang::where('store_id', $this->store_id)->latest()->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $is_open = $row->is_open == true ? 'red' : 'green';
+                    $is_open = $row->is_open == 'true' ? 'red' : 'green';
                     $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit" class="btn btn-transp btn-sm editCabang"><i class="fa fa-pencil"></i></a>';
                     $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Tutup Cabang" class="btn btn-transp btn-sm toggleStatus"><i class="fa fa-power-off" style="color:' . $is_open . '"></i></a>';
                     return $btn;
                 })
                 ->rawColumns(['action'])
                 ->setRowClass(function ($row) {
-                    return $row->is_open == true ? '' : 'row-disabled';
+                    return $row->is_open == 'true' ? '' : 'row-disabled';
                 })
                 ->editColumn('is_open', function ($row) {
-                    if ($row->is_open == true) {
+                    if ($row->is_open == 'true') {
                         return "Buka";
                     } else {
                         return "Tutup";
@@ -36,20 +49,17 @@ class CabangController extends Controller
                 })
                 ->make(true);
         }
-        return view('user.cabang.index');
     }
 
     public function store(Request $request)
     {
         $this->runRules($request);
-
-        $store = Store::UserStore()->first();
         Cabang::Create([
             'nama_cabang' => $request->nama_cabang,
-            'is_open' => true,
+            'is_open' => 'true',
             'alamat' => $request->alamat,
             'telepon' => $request->telepon,
-            'store_id' => $store->id,
+            'store_id' => $this->store_id,
         ]);
 
         return response()->json(['success' => 'Cabang berhasil disimpan.']);
@@ -83,14 +93,14 @@ class CabangController extends Controller
     public function ubahStatus($id)
     {
         $cabang = Cabang::findOrFail($id);
-        if ($cabang->is_open == true) {
-            $cabang->is_open = false;
+        if ($cabang->is_open == 'true') {
+            $cabang->is_open = 'false';
         } else {
-            $cabang->is_open = true;
+            $cabang->is_open = 'true';
         }
         $cabang->save();
 
-        if ($cabang->is_open == true) {
+        if ($cabang->is_open == 'true') {
             return response()->json(['sukses' => 'Cabang Dibuka']);
         } else {
             return response()->json(['sukses' => 'Cabang Ditutup']);

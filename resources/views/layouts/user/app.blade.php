@@ -18,8 +18,9 @@
         <!-- Styles -->
         <link type="text/css" rel="stylesheet" href="{{ asset('') }}plugins/bootstrap/css/bootstrap.css" />
         <link type="text/css" rel="stylesheet" href="{{ asset('') }}css/user_style.css" />
-        @stack('datatable-css')
-        @stack('css')
+        <link rel="stylesheet" href="{{ asset('') }}plugins/sweetalert2/sweetalert2.css">
+        <link rel="stylesheet" href="{{ asset('') }}plugins/dataTable/datatables.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.5/css/responsive.bootstrap4.min.css">
 
 
     </head>
@@ -32,15 +33,29 @@
             <main class="py-4">
                 @yield('content')
             </main>
-            @stack('menu')
         </div>
         <script src="{{ asset('') }}plugins/jquery/jquery.min.js"></script>
         <script src="{{ asset('') }}plugins/popper/popper.js"></script>
         <script src="{{ asset('') }}plugins/bootstrap/js/bootstrap.min.js"></script>
         <script src="{{ asset('') }}plugins/pace/pace.min.js"></script>
+        <script src="{{ asset('') }}plugins/sweetalert2/sweetalert2.js"></script>
+        <script src="{{ asset('') }}plugins/dataTable/datatables.min.js"></script>
+        <script src="https://cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.min.js"></script>
+        <script src="https://cdn.datatables.net/responsive/2.2.5/js/responsive.bootstrap4.min.js"></script>
         <script src="{{ asset('') }}js/user.js"></script>
-        @stack('datatable-js')
-        @stack('js')
+
+
+        <script>
+            // "global" vars, built using blade
+            const myUrl = '{{ url("") }}';
+
+        </script>
+        <script src="{{ asset('') }}js/user/dashboard.js"></script>
+        <script src="{{ asset('') }}js/user/account.js"></script>
+        <script src="{{ asset('') }}js/user/cabang.js"></script>
+        <script src="{{ asset('') }}js/user/layanan.js"></script>
+        <script src="{{ asset('') }}js/user/pelanggan.js"></script>
+
     </body>
 
     </html>

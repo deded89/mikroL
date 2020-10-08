@@ -26,6 +26,10 @@ class Store extends Model
         return $this->hasMany(layanan::class);
     }
 
+    public function pelanggans()
+    {
+        return $this->hasMany(Pelanggan::class);
+    }
 
     // SCOPE
     public function scopeUserStore($query)
